@@ -9,10 +9,25 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProductsComponent } from './components/products/products.component';
+import { CheckOutComponent } from './components/check-out/check-out.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
+import { LoginComponent } from './components/login/login.component';
+import { AdminProductsComponent } from './adminComponents/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './adminComponents/admin-orders/admin-orders.component';
 
 const appRoutes: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'products', component: ProductsComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'check-out', component: CheckOutComponent },
+  { path: 'order-success', component: OrderSuccessComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'admin', component: PageNotFoundComponent },
+  { path: 'admin/products', component: AdminProductsComponent },
+  { path: 'admin/orders', component: AdminOrdersComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 
@@ -21,7 +36,14 @@ const appRoutes: Routes = [
     AppComponent,
     ShoppingCartComponent,
     NavbarComponent,
-    PageNotFoundComponent 
+    PageNotFoundComponent,
+    HomeComponent,
+    ProductsComponent,
+    CheckOutComponent,
+    OrderSuccessComponent,
+    LoginComponent,
+    AdminOrdersComponent,
+    AdminProductsComponent
   ],
     imports: [
     BrowserModule,
