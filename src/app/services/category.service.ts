@@ -12,4 +12,5 @@ export class CategoryService {
   getCategories(): Observable<any[]> {
     return this.db.list('/categories', ref => ref.orderByChild('name')).valueChanges();
   }
+  
 }
