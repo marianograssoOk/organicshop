@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -16,6 +15,10 @@ import { OrderSuccessComponent } from './components/order-success/order-success.
 import { LoginComponent } from './components/login/login.component';
 import { AdminProductsComponent } from './adminComponents/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './adminComponents/admin-orders/admin-orders.component';
+import { AngularFireAuth } from 'angularfire2/auth';  
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { environment } from 'src/environments/environment.prod';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -49,11 +52,14 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireModule,
     RouterModule.forRoot(
       appRoutes
     )
   ],
-  providers: [],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
