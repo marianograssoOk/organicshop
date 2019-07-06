@@ -22,20 +22,31 @@ import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { MyordersComponent } from './components/myorders/myorders.component';
+import { UserService } from './services/user.service';
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: PageNotFoundComponent },
 
   { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuardService] },
   { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
   { path: 'my/orders', component: MyordersComponent, canActivate: [AuthGuardService] },
 
-  { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService] },
-  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService] },
+  { 
+    path: 'admin/products', 
+    component: AdminProductsComponent, 
+    canActivate: [AuthGuardService, AdminAuthGuard] 
+  },
+  { 
+    path: 'admin/orders', 
+    component: AdminOrdersComponent, 
+    canActivate: [AuthGuardService, AdminAuthGuard] 
+  },
+
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 
@@ -65,7 +76,12 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [AngularFireAuth, AuthService, AuthGuardService],
+  providers: [AngularFireAuth, 
+    AuthService, 
+    AuthGuardService, 
+    UserService,
+    AdminAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
