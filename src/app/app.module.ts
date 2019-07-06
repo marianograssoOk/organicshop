@@ -24,6 +24,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { MyordersComponent } from './components/myorders/myorders.component';
 import { UserService } from './services/user.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
+import { ProductService } from './services/product.service';
+import { ProductFormComponent } from './adminComponents/product-form/product-form.component';
+import { CategoryService } from './services/category.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -41,12 +44,17 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService, AdminAuthGuard] 
   },
   { 
+    path: 'admin/products/new', 
+    component: ProductFormComponent, 
+    canActivate: [AuthGuardService, AdminAuthGuard] 
+  },
+  { 
     path: 'admin/orders', 
     component: AdminOrdersComponent, 
     canActivate: [AuthGuardService, AdminAuthGuard] 
   },
 
-  { path: '**', component: PageNotFoundComponent },
+  //{ path: '**', component: PageNotFoundComponent },
 ];
 
 
@@ -63,7 +71,8 @@ const appRoutes: Routes = [
     LoginComponent,
     AdminOrdersComponent,
     AdminProductsComponent,
-    MyordersComponent
+    MyordersComponent,
+    ProductFormComponent
   ],
     imports: [
     BrowserModule,
@@ -80,7 +89,9 @@ const appRoutes: Routes = [
     AuthService, 
     AuthGuardService, 
     UserService,
-    AdminAuthGuard
+    AdminAuthGuard,
+    ProductService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
