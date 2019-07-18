@@ -31,7 +31,7 @@ import { ProductFormComponent } from './adminComponents/product-form/product-for
 import { CategoryService } from './services/category.service';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', component: ProductsComponent },
   { path: 'products', component: ProductsComponent},
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'login', component: LoginComponent },

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +19,8 @@ export class ProductService {
     return this.db.list('/products', ref => ref.orderByChild('name')).snapshotChanges();
   }
 
-  getProduct(productId) {
-    return this.db.object('/products/' + productId).valueChanges();
+  getProduct(productId): Observable<any> {
+    return this.db.object('/products/' + productId).valueChanges().pipe(take(1));
   }
 
   update(productId, product){

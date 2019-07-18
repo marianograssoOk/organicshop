@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,7 +10,7 @@ export class ProductsComponent {
   products$;
 
   constructor(productService: ProductService) {
-    //this.products$ = productService.getAll();
+    this.products$ = productService.getAll();
   }
 
 }
