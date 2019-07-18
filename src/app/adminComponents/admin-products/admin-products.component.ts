@@ -9,7 +9,6 @@ import { AngularFireAction } from 'angularfire2/database';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  //products: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
   products: any[];
   filteredProducts: any[];
   subscription: Subscription;
