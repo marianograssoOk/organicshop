@@ -15,8 +15,12 @@ export class ProductService {
     return this.db.list('/products').push(product);
   }
 
-  getAll() {
+  getAllToGetKey() {
     return this.db.list('/products', ref => ref.orderByChild('name')).snapshotChanges();
+  }
+
+  getAll() {
+    return this.db.list('/products', ref => ref.orderByChild('name')).valueChanges();
   }
 
   getProduct(productId): Observable<any> {

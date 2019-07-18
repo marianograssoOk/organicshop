@@ -29,6 +29,8 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { ProductService } from './services/product.service';
 import { ProductFormComponent } from './adminComponents/product-form/product-form.component';
 import { CategoryService } from './services/category.service';
+import { FilterComponent } from './components/products/filter/filter.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: ProductsComponent },
@@ -79,7 +81,9 @@ const appRoutes: Routes = [
     AdminOrdersComponent,
     AdminProductsComponent,
     MyordersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    FilterComponent,
+    ProductCardComponent
   ],
     imports: [
     BrowserModule,
