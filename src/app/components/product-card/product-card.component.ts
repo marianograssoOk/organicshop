@@ -10,17 +10,33 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 export class ProductCardComponent{
   @Input('product') product: any;
   @Input('show-actions') showActions = true;
-
+  @Input('shopping-cart') shoppingCart;
+  
   constructor(private cartService: ShoppingCartService) { }
 
-  addToCart(product){
+
+  addToCart(){
+    this.cartService.addToCart(this.constructObj());
+  }
+
+  removeFromCart(){
+    this.cartService.removeFromCart(this.constructObj());
+  }
+
+  getQuantity(){
+    if (!this.shoppingCart) return 0;
+    let item = this.shoppingCart.items[this.product.payload.key];
+    return item ? item.quantity : 0;
+  }
+  
+  private constructObj(){
     let productObj: Product = { 
-      title: product.payload.val().title,
-      price: product.payload.val().price,
-      category: product.payload.val().category,
-      imageUrl: product.payload.val().imageUrl,
-      key: product.payload.key };
-    this.cartService.addToCart(productObj);
+      title: this.product.payload.val().title,
+      price: this.product.payload.val().price,
+      category: this.product.payload.val().category,
+      imageUrl: this.product.payload.val().imageUrl,
+      key: this.product.payload.key };
+      return productObj;
   }
 
 }
