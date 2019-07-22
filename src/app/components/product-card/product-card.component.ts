@@ -8,18 +8,19 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent{
-  @Input('product') product: any = {};
+  @Input('product') product: any;
   @Input('show-actions') showActions = true;
 
   constructor(private cartService: ShoppingCartService) { }
 
-  addToCart(product: Product){
-    let cartId = localStorage.getItem('cartId');
-    if (!cartId) {
-      this.cartService.create().then(result => {
-        localStorage.setItem('cartId', result.key);
-      });
-    }
+  addToCart(product){
+    let productObj: Product = { 
+      title: product.payload.val().title,
+      price: product.payload.val().price,
+      category: product.payload.val().category,
+      imageUrl: product.payload.val().imageUrl,
+      key: product.payload.key };
+    this.cartService.addToCart(productObj);
   }
 
 }

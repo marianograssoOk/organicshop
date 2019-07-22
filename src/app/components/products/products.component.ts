@@ -17,7 +17,7 @@ export class ProductsComponent {
     route: ActivatedRoute, 
     productService: ProductService) 
     {
-      productService.getAll().pipe(switchMap(
+      productService.getAllToGetKey().pipe(switchMap(
         products => {
           this.products = products;
           return route.queryParamMap;
@@ -25,7 +25,7 @@ export class ProductsComponent {
       )).subscribe(params => {
           this.category = params.get('category');
           this.filteredProducts = (this.category) ? 
-          this.products.filter(p => p.category === this.category) :
+          this.products.filter(p => p.payload.val().category === this.category) :
           this.products;
     });
     

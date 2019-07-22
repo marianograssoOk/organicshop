@@ -12,9 +12,8 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductFormComponent implements OnInit {
   categories: Observable<any[]>;
-  product: Product = { title: '', price: null, category: '', imageUrl: ''};
-  //product: {};
-  id;
+  product: Product = { title: '', price: null, category: '', imageUrl: '', key: ''};
+  id: string;
 
   constructor(
     private categoryService: CategoryService, 
