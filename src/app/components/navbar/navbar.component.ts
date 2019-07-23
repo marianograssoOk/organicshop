@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
       this.shoppingCartItemCount = 0;
       for (let productId in cart.items)
         this.shoppingCartItemCount += cart.items[productId].quantity;
-    })
+    });
   }
 
 }
