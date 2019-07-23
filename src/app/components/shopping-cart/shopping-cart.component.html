@@ -15,9 +15,16 @@
             <tr *ngFor="let p of products">
                 <td> {{ p.product.title }} </td>
                 <td> {{ p.quantity }} </td>
-                <td></td>
+                <td> {{ calcPrice(p) | currency:'USD':true }} </td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>{{ total | currency:'USD':true }}</th>
+            </tr>
+        </tfoot>
     </table>
 </ng-container>
 

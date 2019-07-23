@@ -9,6 +9,7 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 export class ShoppingCartComponent implements OnInit {
   shoppingCartItemCount: number;
   products: any[] = [];
+  total: number = 0;
   cart: any;
 
   constructor(private shoppingCartService: ShoppingCartService) { }
@@ -20,8 +21,14 @@ export class ShoppingCartComponent implements OnInit {
       this.cart = cart;
       for (let productId in cart.items) {
         this.products.push(cart.items[productId]);
+        this.total += this.calcPrice(cart.items[productId]);
+        console.log(this.total);
       }
     });
+  }
+
+  calcPrice(p: any){
+    return p.product.price * p.quantity; 
   }
 
 }
